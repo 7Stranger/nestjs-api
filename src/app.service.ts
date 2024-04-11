@@ -9,7 +9,7 @@ export class AppService {
     console.log(requestIndex);
     const randDelay = Math.floor(Math.random() * 1000) + 1;
 
-    // await this.delay(randDelay);
+    await this.delay(randDelay);
 
     return requestIndex;
   }
