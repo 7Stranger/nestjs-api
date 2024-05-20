@@ -1,15 +1,27 @@
 import { Injectable } from '@nestjs/common';
+import { DatabaseService } from './providers/db/db.service';
 
 @Injectable()
 export class AppService {
-  private delay = (interval: number) =>
-    new Promise((resolve) => setTimeout(resolve, interval));
+  constructor(private readonly dbService: DatabaseService) {}
 
-  public async getRequestIndex(requestIndex: number): Promise<number> {
-    const randDelay = Math.floor(Math.random() * 1000) + 1;
+  // public async createUsers(col: number): Promise<void> {
+  //   for (let i = 0; i < col; i++) {
+  //     await this.dbService.query(`
+  //     INSERT INTO users (
+  //       "first_name",
+  //       "last_name"
+  //     ) VALUES (
+  //       '${i}',
+  //       '${i * 10}'
+  //     )
+  //   `);
+  //   }
+  // }
 
-    await this.delay(randDelay);
-
-    return requestIndex;
-  }
+  // public async getUsers(): Promise<void> {
+  //   return this.dbService.query(`
+  //     SELECT * FROM users;
+  //   `);
+  // }
 }

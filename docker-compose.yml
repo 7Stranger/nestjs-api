@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  back:
+    build:
+      context: ./
+      dockerfile: Dockerfile.local
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: local
+      SHOW_CONFIGS: 'true'
+
+      # == LOCAL ==
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: telegram
+      DB_PASSWORD: 1
+      DB_DATABASE: telegram
+
+    volumes:
+      - ./:/home/node/app
+    depends_on:
+      - db
+  db:
+    image: postgres:15.0-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: 1
+      POSTGRES_USER: telegram
+      POSTGRES_INITDB_ARGS: '--locale-provider=icu --icu-locale=uk_UA'
+      LANG: uk_UA.UTF-8
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

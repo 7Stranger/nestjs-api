@@ -1,18 +1,22 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import { GetRequestIndexDto } from './dto/get-request-index.dto';
 
-@Controller('api')
+@Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('liveness')
-  private liveness() {
+  private liveness(): string {
     return 'OK';
   }
 
-  @Post()
-  private getRequestIndex(@Body() dto: GetRequestIndexDto): Promise<number> {
-    return this.appService.getRequestIndex(dto.requestIndex);
-  }
+  // @Post('test/:col')
+  // private createUsers(@Param('col') col: number): Promise<void> {
+  //   return this.appService.createUsers(col);
+  // }
+
+  // @Get('users')
+  // private getUsers() {
+  //   return this.appService.getUsers();
+  // }
 }
