@@ -1,6 +1,6 @@
 import { CommonService } from './common/common.service';
 import { EnvironmentEnum } from './common/enums/environment.enum';
-// import * as path from 'path';
+import * as path from 'path';
 
 CommonService.basicInit();
 
