@@ -15,6 +15,10 @@ const {
   DB_USERNAME = 'telegram',
   DB_PASSWORD = '1',
   DB_DATABASE = 'telegram',
+  TELEGRAM_BOT_API_KEY = 'telegram_bot_api_key',
+  TELEGRAM_CHANNEL_NUM = 'telegram_channel_name_with_@',
+  TELEGRAM_CHANNEL_MOON = 'telegram_channel_name_with_@',
+  GPT_API_KEY = 'gpt_api_key',
 } = process.env;
 
 const configs: Record<string, any> = {
@@ -56,6 +60,14 @@ const configs: Record<string, any> = {
         max: 1,
         connectionTimeoutMillis: 1000,
       },
+    },
+    tg: {
+      apiKey: TELEGRAM_BOT_API_KEY,
+      channelNum: TELEGRAM_CHANNEL_NUM,
+      channelMoon: TELEGRAM_CHANNEL_MOON,
+    },
+    gpt: {
+      apiKey: GPT_API_KEY,
     },
   },
   constants: {
