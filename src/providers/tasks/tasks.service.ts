@@ -34,7 +34,3 @@ ${moonPhase.description}`;
   //   }
   // }
 }
-
-export default function cron() {
-  return this.postToMoonChannel();
-}

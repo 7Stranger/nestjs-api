@@ -14,7 +14,7 @@
   ],
   "crons": [
     {
-      "path": "/providers/tasks",
+      "path": "/api/tasks/moon",
       "schedule": "'0 09 * * *"
     }
   ]
