@@ -11,7 +11,7 @@ import { GptService } from '../gpt/gpt.service';
 type Context = Scenes.SceneContext;
 
 const TG_API_KEY = configs.providers.tg.apiKey;
-const TELEGRAM_CHANNEL_NUM = configs.providers.tg.channelNum;
+// const TELEGRAM_CHANNEL_NUM = configs.providers.tg.channelNum;
 
 const bot = new Telegraf(TG_API_KEY);
 
