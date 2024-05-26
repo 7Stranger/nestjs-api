@@ -11,11 +11,11 @@
       "dest": "src/main.ts",
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     }
+  ],
+  "crons": [
+    {
+      "path": "/tasks/moon",
+      "schedule": "'0 09 * * *"
+    }
   ]
-  // "crons": [
-  //   {
-  //     "path": "/tasks/moon",
-  //     "schedule": "'0 09 * * *"
-  //   }
-  // ]
 }
