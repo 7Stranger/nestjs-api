@@ -34,10 +34,10 @@ export class TelegramService extends Telegraf<Context> {
       await ctx.replyWithHTML(`Hello, <b>${tgUser.username ?? tgUser.first_name}</b>!`);
     } catch (err) {
       if (err.code === SQL_RAISE_EXCEPTION_CODE) {
-        const raisedError = getSqlRaisedError(err);
-        if (raisedError.code === CustomErrorCodes.USER_ALREADY_EXISTS) {
-          await ctx.replyWithHTML(`Hello, <b>${tgUser.username ?? tgUser.first_name}</b>! Again :)`);
-        }
+        // const raisedError = getSqlRaisedError(err);
+        // if (raisedError.code === CustomErrorCodes.USER_ALREADY_EXISTS) {
+        //   await ctx.replyWithHTML(`Hello, <b>${tgUser.username ?? tgUser.first_name}</b>! Again :)`);
+        // }
       }
     }
   }
