@@ -13,14 +13,18 @@ export class TasksService {
 
   @Cron('0 09 * * *', { timeZone: TIME_ZONE })
   public async postToMoonChannel(): Promise<void> {
-    const moonPhase = this.moonService.getMoonPhase();
-    const moonDay = this.moonService.getMoonAge(new Date().toString());
-    const message = `Місячний день сьогодні: ${moonDay.toFixed(1)}
+    try {
+      const moonPhase = this.moonService.getMoonPhase();
+      const moonDay = this.moonService.getMoonAge(new Date().toString());
+      const message = `Місячний день сьогодні: ${moonDay.toFixed(1)}
 Місячна фаза: ${moonPhase.name.ua}
 
 ${moonPhase.description}`;
 
-    await this.telegramService.sendTextMessageToChannel(TELEGRAM_CHANNEL_MOON, message);
+      await this.telegramService.sendTextMessageToChannel(TELEGRAM_CHANNEL_MOON, message);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   // @Cron('0 */5 * * * *', { timeZone: TIME_ZONE })
