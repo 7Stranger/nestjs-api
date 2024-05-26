@@ -9,4 +9,9 @@ export class TasksController {
   private async postToMoonChannel(): Promise<void> {
     return this.tasksService.postToMoonChannel();
   }
+
+  @Get('test')
+  private test() {
+    return 'TEST!!!!';
+  }
 }
