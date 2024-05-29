@@ -1,6 +1,5 @@
 {
   "name": "nestjs-api",
-  "type": "module",
   "version": "0.0.1",
   "description": "",
   "author": "Stanislav Moiseeff",
