@@ -9,6 +9,7 @@ async function bootstrap(): Promise<void> {
   app.enableCors({
     origin: true,
   });
-  await app.listen(3000);
+  const PORT = process.env.PORT || 3000;
+  await app.listen(PORT);
 }
 bootstrap();
