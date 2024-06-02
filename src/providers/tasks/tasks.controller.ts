@@ -6,12 +6,13 @@ export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
   @Get('moon')
-  private async postToMoonChannel(): Promise<void> {
-    return this.tasksService.postToMoonChannel();
+  private async postToMoonChannel(): Promise<string> {
+    await this.tasksService.postToMoonChannel();
+    return 'OK';
   }
 
   @Get('test')
-  private test() {
+  private test(): string {
     return 'TEST!!!!';
   }
 }
