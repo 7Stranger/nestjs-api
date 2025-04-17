@@ -1,6 +1,6 @@
 import { CommonService } from './common/common.service';
 import { EnvironmentEnum } from './common/enums/environment.enum';
-import * as path from 'path';
+// import * as path from 'path';
 
 CommonService.basicInit();
 
@@ -10,15 +10,15 @@ const {
   TIME_ZONE = 'Europe/Kyiv',
   SHOW_CONFIGS = 'false',
   PORT = '3000',
-  DB_HOST = 'db',
+  DB_HOST = 'tel_db',
   DB_PORT = '5432',
   DB_USERNAME = 'telegram',
   DB_PASSWORD = '1',
   DB_DATABASE = 'telegram',
-  TELEGRAM_BOT_API_KEY = 'telegram_bot_api_key',
+  TELEGRAM_BOT_API_KEY = 'tg-bot-api-key',
   TELEGRAM_CHANNEL_NUM = 'telegram_channel_name_with_@',
   TELEGRAM_CHANNEL_MOON = 'telegram_channel_name_with_@',
-  GPT_API_KEY = 'gpt_api_key',
+  GPT_API_KEY = 'gpt-api-key',
 } = process.env;
 
 const configs: Record<string, any> = {
@@ -34,7 +34,7 @@ const configs: Record<string, any> = {
     db: {
       type: 'postgres',
       host: DB_HOST,
-      port: DB_PORT,
+      port: NODE_ENV === EnvironmentEnum.local ? DB_PORT : undefined,
       username: DB_USERNAME,
       password: DB_PASSWORD,
       database: DB_DATABASE,

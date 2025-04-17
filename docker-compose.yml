@@ -1,7 +1,5 @@
-version: '3.8'
-
 services:
-  back:
+  tel_back:
     build:
       context: ./
       dockerfile: Dockerfile.local
@@ -12,7 +10,7 @@ services:
       SHOW_CONFIGS: 'true'
 
       # == LOCAL ==
-      DB_HOST: db
+      DB_HOST: tel_db
       DB_PORT: 5432
       DB_USERNAME: telegram
       DB_PASSWORD: 1
@@ -21,8 +19,8 @@ services:
     volumes:
       - ./:/home/node/app
     depends_on:
-      - db
-  db:
+      - tel_db
+  tel_db:
     image: postgres:15.0-alpine
     restart: always
     ports:
@@ -32,7 +30,7 @@ services:
       POSTGRES_USER: telegram
       POSTGRES_INITDB_ARGS: '--locale-provider=icu --icu-locale=uk_UA'
       LANG: uk_UA.UTF-8
-  adminer:
+  tel_adminer:
     image: adminer
     restart: always
     ports:
