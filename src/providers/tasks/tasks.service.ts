@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TelegramService } from '../telegram/telegram.service';
-import { Cron, CronExpression } from '@nestjs/schedule';
+import { Cron } from '@nestjs/schedule';
 import configs from 'src/configs';
 import { MoonService } from 'src/moon/moon.service';
 
@@ -14,10 +14,9 @@ export class TasksService {
   @Cron('0 09 * * *', { timeZone: TIME_ZONE })
   public async postToMoonChannel(): Promise<void> {
     try {
-      const moonPhase = this.moonService.getMoonPhase();
-      const moonDay = this.moonService.getMoonAge(new Date().toString());
-      const message = `Місячний день сьогодні: ${moonDay.toFixed(1)}
-Місячна фаза: ${moonPhase.name.ua}
+      const moonPhase = await this.moonService.getMoonPhase();
+      const message = `Місячний день сьогодні: ${moonPhase.moonDay}
+Місячна фаза: ${moonPhase.name}
 
 ${moonPhase.description}`;
 

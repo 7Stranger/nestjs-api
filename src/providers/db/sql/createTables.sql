@@ -15,3 +15,18 @@ CREATE TABLE "users" (
 ) WITH (
   OIDS=FALSE
 );
+
+CREATE TABLE "moon_phase" (
+	"id" uuid DEFAULT gen_random_uuid(),
+	"name" jsonb NOT NULL,
+	"day_from" int NOT NULL,
+	"day_to" int NOT NULL,
+  "day_feature" jsonb NOT NULL,
+  "description" jsonb NOT NULL,
+	"created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  "deleted_at" TIMESTAMPTZ NULL DEFAULT NULL,
+	CONSTRAINT "moon_phase_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
