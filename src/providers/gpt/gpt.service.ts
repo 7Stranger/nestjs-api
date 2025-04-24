@@ -28,6 +28,7 @@ interface IGptResponse {
 }
 
 const GPT_API_KEY = configs.providers.gpt.apiKey;
+const GPT_PROJECT_ID = configs.providers.gpt.projectId;
 
 @Injectable()
 export class GptService {
@@ -35,13 +36,13 @@ export class GptService {
 
   private openai = new OpenAI({
     apiKey: GPT_API_KEY,
-    project: 'proj_yiVjo8UY5lVLxCwWD1FjpLXW',
+    project: GPT_PROJECT_ID,
   });
 
   public async main(): Promise<any> {
     const response = await this.openai.chat.completions.create({
       messages: [{ role: 'user', content: 'Привет! Расскажи шутку про программистов.' }],
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4.1-nano-2025-04-14',
     });
     console.log(response.choices[0].message.content);
   }

@@ -19,6 +19,7 @@ const {
   TELEGRAM_CHANNEL_NUM = 'telegram_channel_name_with_@',
   TELEGRAM_CHANNEL_MOON = 'telegram_channel_name_with_@',
   GPT_API_KEY = 'gpt-api-key',
+  GPT_PROJECT_ID = 'gpt-project-id',
 } = process.env;
 
 const configs: Record<string, any> = {
@@ -46,14 +47,12 @@ const configs: Record<string, any> = {
       synchronize: false,
       // ssl: {
       //   required: true,
-      //   rejectUnauthorized: false,
       // },
       ssl:
         NODE_ENV === EnvironmentEnum.local
           ? undefined
           : {
               required: true,
-              rejectUnauthorized: false,
             },
       poolSize: 1,
       extra: {
@@ -68,6 +67,7 @@ const configs: Record<string, any> = {
     },
     gpt: {
       apiKey: GPT_API_KEY,
+      projectId: GPT_PROJECT_ID,
     },
   },
   constants: {

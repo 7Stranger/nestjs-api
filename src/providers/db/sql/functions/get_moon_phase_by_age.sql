@@ -1,7 +1,7 @@
 DROP FUNCTION IF EXISTS get_moon_phase_by_age;
 
 CREATE FUNCTION get_moon_phase_by_age (
-  in_moon_age numeric
+  in_moon_age float
 )
 RETURNS json AS $body$
 DECLARE
