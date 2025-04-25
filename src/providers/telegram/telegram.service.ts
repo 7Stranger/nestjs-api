@@ -25,6 +25,7 @@ export class TelegramService extends Telegraf<Context> {
   @Start()
   private async onStart(@Ctx() ctx: Context): Promise<void> {
     const tgUser: ITelegramUser = ctx.from;
+    console.log('TG start! ', tgUser.username ?? tgUser.first_name);
     if (tgUser.is_bot) {
       await ctx.replyWithHTML(`Sorry, bots is not available! Bye, ${tgUser.username}!`);
       return;
