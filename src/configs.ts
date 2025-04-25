@@ -15,6 +15,7 @@ const {
   DB_USERNAME = 'telegram',
   DB_PASSWORD = '1',
   DB_DATABASE = 'telegram',
+  DB_SSL = 'false',
   TELEGRAM_BOT_API_KEY = 'tg-bot-api-key',
   TELEGRAM_CHANNEL_NUM = 'telegram_channel_name_with_@',
   TELEGRAM_CHANNEL_MOON = 'telegram_channel_name_with_@',
@@ -45,20 +46,13 @@ const configs: Record<string, any> = {
       autoLoadEntities: true,
       migrations: ['dist/providers/db/migrations/*.js'],
       synchronize: false,
-      // ssl: {
-      //   required: true,
-      // },
-      ssl:
-        NODE_ENV === EnvironmentEnum.local
-          ? undefined
-          : {
-              required: true,
-            },
+      ssl: DB_SSL === 'false' ? undefined : { required: true, rejectUnauthorized: false },
       poolSize: 1,
       extra: {
         max: 1,
-        connectionTimeoutMillis: 1000,
+        connectionTimeoutMillis: 3000,
       },
+      connectTimeoutMS: 3000,
     },
     tg: {
       apiKey: TELEGRAM_BOT_API_KEY,
