@@ -36,3 +36,4 @@ lerna-debug.log*
 
 *.env*
 *.secret*
+secrets_of_numerology.json

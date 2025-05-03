@@ -18,9 +18,11 @@ const {
   DB_SSL = 'false',
   TELEGRAM_BOT_API_KEY = 'tg-bot-api-key',
   TELEGRAM_CHANNEL_NUM = 'telegram_channel_name_with_@',
+  TELEGRAM_CHANNEL_NUM_ID = 'telegram_channel_num_id',
   TELEGRAM_CHANNEL_MOON = 'telegram_channel_name_with_@',
   GPT_API_KEY = 'gpt-api-key',
   GPT_PROJECT_ID = 'gpt-project-id',
+  STRANGER_ADMIN_ID = null,
 } = process.env;
 
 const configs: Record<string, any> = {
@@ -50,14 +52,16 @@ const configs: Record<string, any> = {
       poolSize: 1,
       extra: {
         max: 1,
-        connectionTimeoutMillis: 3000,
+        connectionTimeoutMillis: 30000,
       },
-      connectTimeoutMS: 3000,
+      connectTimeoutMS: 30000,
     },
     tg: {
       apiKey: TELEGRAM_BOT_API_KEY,
       channelNum: TELEGRAM_CHANNEL_NUM,
+      channelNumId: TELEGRAM_CHANNEL_NUM_ID,
       channelMoon: TELEGRAM_CHANNEL_MOON,
+      adminId: STRANGER_ADMIN_ID,
     },
     gpt: {
       apiKey: GPT_API_KEY,

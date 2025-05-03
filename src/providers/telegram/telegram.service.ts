@@ -12,6 +12,8 @@ type Context = Scenes.SceneContext;
 
 const TG_API_KEY = configs.providers.tg.apiKey;
 // const TELEGRAM_CHANNEL_NUM = configs.providers.tg.channelNum;
+const TELEGRAM_CHANNEL_NUM_ID = configs.providers.tg.channelNumId;
+const ADMIN_ID = configs.providers.tg.adminId;
 
 const bot = new Telegraf(TG_API_KEY);
 
@@ -45,15 +47,15 @@ export class TelegramService extends Telegraf<Context> {
 
   @On('text')
   private async onText(@Ctx() ctx: Context, @Message('text') message: string): Promise<void> {
-    // await bot.telegram.sendPhoto(
-    //   TELEGRAM_CHANNEL,
-    //   'https://wintik.com.ua/image/cache/webp/catalog/YML-DC/d34/IMGd341e195eb82346356cec5cc38514e42-1200x1200.webp',
-    // );
-    // await bot.telegram.sendMessage(TELEGRAM_CHANNEL, message);
-    // const res = await lastValueFrom(this.gptService.getGptResponse(message));
-    // await ctx.reply(res);
-    // const res = await this.gptService.main();
-    // await ctx.reply(res);
+    if (ADMIN_ID === '' || ctx.from.id !== ADMIN_ID) {
+      console.log(`Sorry, you are not admin!`);
+      return;
+    }
+    try {
+      await bot.telegram.sendMessage(TELEGRAM_CHANNEL_NUM_ID, message);
+    } catch (err) {
+      console.log('Error sending message to channel: ', err);
+    }
   }
 
   public async sendTextMessageToChannel(channelId: string, message: string): Promise<void> {

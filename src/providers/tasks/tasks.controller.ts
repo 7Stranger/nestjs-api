@@ -12,7 +12,12 @@ export class TasksController {
   }
 
   @Get('test')
-  private test(): string {
-    return 'TEST!!!!';
+  private test(): Promise<any> {
+    return this.tasksService.createTodayPosts();
+  }
+
+  @Get('post')
+  private post(): Promise<any> {
+    return this.tasksService.postSheduledPost();
   }
 }

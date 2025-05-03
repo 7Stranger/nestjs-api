@@ -5,8 +5,8 @@ import { GptService } from './gpt.service';
 export class GptController {
   constructor(private readonly gptService: GptService) {}
 
-  @Get()
-  private main(): Promise<any> {
-    return this.gptService.main();
-  }
+  // @Get()
+  // private main(): Promise<any> {
+  //   return this.gptService.listModels();
+  // }
 }
