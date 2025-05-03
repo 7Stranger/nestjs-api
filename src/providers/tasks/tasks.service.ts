@@ -22,7 +22,7 @@ export class TasksService {
   public async postSheduledPost(): Promise<void> {
     try {
       const [{ post }] = await this.dbService.query(`SELECT * FROM get_sheduled_post() AS "post"`);
-      if (!post || post === null) {
+      if (!post || post.content === null) {
         console.log('NO POSTS FOR TODAY');
         return;
       }
