@@ -47,7 +47,7 @@ export class TelegramService extends Telegraf<Context> {
 
   @On('text')
   private async onText(@Ctx() ctx: Context, @Message('text') message: string): Promise<void> {
-    if (ADMIN_ID === '' || ctx.from.id !== ADMIN_ID) {
+    if (ADMIN_ID === '' || ctx.from.id.toString() != ADMIN_ID.toString()) {
       console.log(`Sorry, you are not admin!`);
       return;
     }
