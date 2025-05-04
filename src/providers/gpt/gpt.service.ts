@@ -18,6 +18,10 @@ export class GptService {
     project: GPT_PROJECT_ID,
   });
 
+  public async test(text: string): Promise<any> {
+    return this.getAiResponse([{ role: 'user', content: text }]);
+  }
+
   public async getPost(prompts: any): Promise<any> {
     const systemPrompt = {
       role: prompts.system.role,
@@ -35,12 +39,18 @@ ${aiResponse}`;
   }
 
   private async getAiResponse(messages: Array<ChatCompletionMessageParam>): Promise<any> {
-    const response: ChatCompletion = await this.openai.chat.completions.create({
-      messages,
-      model: GPT_MODEL,
-    });
-    const res = response.choices[0].message.content;
-    return res;
+    console.log('messages', messages);
+    try {
+      const response: ChatCompletion = await this.openai.chat.completions.create({
+        messages,
+        model: GPT_MODEL,
+      });
+      const res = response.choices[0].message.content;
+      return res;
+    } catch (error) {
+      console.error('Error in getAiResponse:', error);
+      throw new Error('Failed to get AI response');
+    }
   }
 
   // async listModels(): Promise<any> {
